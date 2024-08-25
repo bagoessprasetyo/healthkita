@@ -36,6 +36,7 @@ const config = {
         greencode: "#128C7E",
         neutral10:"F1F1F1",
         main:"#03358A",
+        primarysurface:"#FEF6CC",
         secondarysurface:"#FEF0AA",
         bgsecondary:"#CCC7B7",
         // secondary:"0276BF",
