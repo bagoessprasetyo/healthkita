@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
+import Navbar from "@/components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const lato = Lato({ 
+  weight: ["100", "300", "400", "700", "900"],
+  subsets: ["latin"] // Specify the subsets here
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={lato.className}>
+        <div className="h-full w-full dark:bg-black bg-bgsecondary  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex items-start justify-center">
+          <div className="flex flex-col px-14 py-8 w-full max-w-8xl">
+            <Navbar/>
+            {children}
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
