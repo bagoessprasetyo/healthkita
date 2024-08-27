@@ -14,6 +14,7 @@ import Autoplay from "embla-carousel-autoplay"
 import { Separator } from "@/components/ui/separator";
 import BMICalculator from "@/components/ui/BMICalculator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import PackageSection from "@/components/ui/package-card";
 
 
 export default function Home() {
@@ -125,35 +126,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col space-y-10 bg-white px-4 md:px-12 lg:px-24 py-12 md:py-20 lg:py-28 items-start justify-start">
-          <div className="flex flex-col space-y-3">
-            <p className="font-medium text-base text-primary">Medical Tourism</p>
-            <h2 className="font-semibold text-4xl lg:text-5xl mb-4 md:mb-0">
-              Our Package
-            </h2>
-          </div>
-          <Tabs defaultValue="standard" className="w-full">
-            <TabsList className="w-full">
-              <TabsTrigger className="w-full text-base" value="standard">Standard</TabsTrigger>
-              <TabsTrigger className="w-full text-base" value="premium">Premium</TabsTrigger>
-            </TabsList>
-            <TabsContent className="w-full" value="standard">
-              <div className="grid grid-cols-2 lg:grid-cols-4 p-3 gap-3">
-                {standardPkg.map((std, index) => (
-                  <Image src={std} key={index} width={400} height={400} alt="Standard" />
-                ))}
-              </div>
-            </TabsContent>
-            <TabsContent className="w-full" value="premium">
-              <div className="grid grid-cols-2 lg:grid-cols-4 p-3 gap-3">
-                {premiumPkg.map((prm, index) => (
-                  <Image src={prm} key={index} width={400} height={400} alt="Premium" />
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
-
-        </div>
+        <PackageSection/>
         <div className="flex flex-col space-y-10 bg-white px-4 md:px-12 lg:px-24 py-12 md:py-20 lg:py-28 items-start justify-start">
           <div className="flex flex-col space-y-3">
             <p className="font-medium text-base text-primary">Medical Tourism</p>
