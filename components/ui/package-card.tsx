@@ -26,6 +26,7 @@ return (
         alt={title} 
         layout="fill" 
         objectFit="cover"
+        objectPosition="center -30px"
         />
     </div>
     <div className="p-6">
@@ -40,7 +41,12 @@ return (
         ))}
         </ul>
         <div className="bg-gray-100 p-4 rounded-lg">
-        <p className="text-sm font-medium text-gray-700">{includes}</p>
+          <p className="text-sm font-medium text-gray-700 mb-2">Includes:</p>
+          <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+            {includes.split(', ').map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
         </div>
     </div>
 
@@ -64,7 +70,6 @@ return (
     </div>
 );
 };
-  
 
 const PackageSection: React.FC = () => {
   const standardBenefits: Benefit[] = [
@@ -94,25 +99,25 @@ const PackageSection: React.FC = () => {
     <div className="text-center">
       <p className="font-medium text-base text-primary mb-2">Medical Tourism</p>
       <h2 className="font-bold text-4xl lg:text-5xl mb-8">
-        Our Packages
+        Kill yourself
       </h2>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:w-full max-w-6xl mx-auto">
       <PackageCard 
         title="VIP Standard"
-        price="RM 805"
+        price="RM 2788"
         benefits={standardBenefits}
         includes="Includes: Medical Check Up, Hotel Transfer, VIP Lane"
-        imageSrc="/standard.jpeg"
+        imageSrc="/mgc-vip-standard.jpg"
       />
 
       <PackageCard 
         title="VIP Premium"
-        price="RM 1125"
+        price="RM 3508"
         benefits={premiumBenefits}
-        includes="Includes: Medical Check Up, Airport Pick Up, Hotel Transfer, VIP Lane, Entourage 1× Pax"
-        imageSrc="/premium.jpeg"
+        includes="Medical Check Up, Airport Pick Up, Hotel Transfer, VIP Lane, Entourage 1× Pax"
+        imageSrc="/mgc-vip-premium.jpg"
       />
     </div>
 
