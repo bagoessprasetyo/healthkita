@@ -99,7 +99,7 @@ const PackageSection: React.FC = () => {
     <div className="text-center">
       <p className="font-medium text-base text-primary mb-2">Medical Tourism</p>
       <h2 className="font-bold text-4xl lg:text-5xl mb-8">
-        Kill yourself
+        Our Packages
       </h2>
     </div>
 
@@ -121,7 +121,7 @@ const PackageSection: React.FC = () => {
       />
     </div>
 
-    <p className="text-center text-sm text-gray-600 italic mt-8">
+    <p className="text-center text-xl font-bold text-gray-600 italic mt-8">
       Book in September 2024 and get an extra 10% discount!
     </p>
   </div>
