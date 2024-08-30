@@ -97,7 +97,10 @@ export default function BMICalculator() {
                   Your BMI {bmi}, {bmi < 18.5 ? "Underweight" : bmi < 25 ? "Ideal Weight" : bmi < 30 ? "Overweight" : "Obese"}
                 </p>
                 <p className="text-sm text-gray-600">
-                  Its good. Always make sure your calorie intake matches your daily needs!
+                  {bmi < 18.5 ? "Consider consulting a healthcare provider to discuss ways to achieve a healthier weight." :
+                   bmi >= 30 ? "It's important to consult with a healthcare provider for personalized advice on achieving a healthier weight." :
+                   bmi >= 25 ? "Consider adopting a balanced diet and regular exercise to reach a healthier weight." :
+                   "It's good. Always make sure your calorie intake matches your daily needs!"}
                 </p>
               </>
             ) : (
