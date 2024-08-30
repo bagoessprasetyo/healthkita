@@ -21,6 +21,40 @@ export default function BMICalculator() {
     }
   };
 
+  const handleHeightChange = (e: { target: { value: string; }; }) => {
+    const value = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    setHeight(value);
+  };
+
+  const handleHeightBlur = () => {
+    if (height && !height.includes("cm")) {
+      setHeight(`${height} cm`);
+    }
+  };
+
+  const handleHeightFocus = () => {
+    if (height.includes("cm")) {
+      setHeight(height.replace(" cm", ""));
+    }
+  };
+
+  const handleWeightChange = (e: { target: { value: string; }; }) => {
+    const value = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    setWeight(value);
+  };
+
+  const handleWeightBlur = () => {
+    if (weight && !weight.includes("kg")) {
+      setWeight(`${weight} kg`);
+    }
+  };
+
+  const handleWeightFocus = () => {
+    if (weight.includes("kg")) {
+      setWeight(weight.replace(" kg", ""));
+    }
+  };
+
   return (
     <div className="p-4 md:p-8 max-w-6xl mx-auto">
       <div className="flex flex-col lg:flex-row lg:space-x-12 space-y-8 lg:space-y-0">
@@ -54,22 +88,63 @@ export default function BMICalculator() {
                   </div>
                 </div>
                 <div className="flex flex-col w-full md:w-1/2 rounded-2xl space-y-5 bg-primary p-5">
-                  <h3 className="text-lg text-white font-normal">Height & Weight</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input
-                      type="number"
-                      placeholder="Your height (cm)"
-                      value={height}
-                      onChange={(e) => setHeight(e.target.value)}
-                      className="bg-white"
-                    />
-                    <Input
-                      type="number"
-                      placeholder="Your weight (kg)"
-                      value={weight}
-                      onChange={(e) => setWeight(e.target.value)}
-                      className="bg-white"
-                    />
+                    <div className="flex flex-col">
+                      <h3 className="text-lg text-white font-normal mb-3">Height</h3>
+                      <div className="relative">
+                        <Input
+                          type="text"
+                          placeholder="Your height (cm)"
+                          value={height}
+                          onChange={handleHeightChange}
+                          onBlur={handleHeightBlur}
+                          onFocus={handleHeightFocus}
+                          className="bg-white pr-10"
+                        />
+                        <div className="absolute right-0 top-0 bottom-0 flex flex-col">
+                          <Button onClick={() => setHeight((prev) => {
+                            const num = parseInt(prev);
+                            return isNaN(num) ? prev : (num + 1).toString();
+                          })} className="h-1/2 px-2 bg-secondary text-white rounded-none rounded-tr">
+                            <Icon icon="mdi:chevron-up" className="w-4 h-4" />
+                          </Button>
+                          <Button onClick={() => setHeight((prev) => {
+                            const num = parseInt(prev);
+                            return isNaN(num) ? prev : (num - 1).toString();
+                          })} className="h-1/2 px-2 bg-secondary text-white rounded-none rounded-br">
+                            <Icon icon="mdi:chevron-down" className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <h3 className="text-lg text-white font-normal mb-3">Weight</h3>
+                      <div className="relative">
+                        <Input
+                          type="text"
+                          placeholder="Your weight (kg)"
+                          value={weight}
+                          onChange={handleWeightChange}
+                          onBlur={handleWeightBlur}
+                          onFocus={handleWeightFocus}
+                          className="bg-white pr-10"
+                        />
+                        <div className="absolute right-0 top-0 bottom-0 flex flex-col">
+                          <Button onClick={() => setWeight((prev) => {
+                            const num = parseInt(prev);
+                            return isNaN(num) ? prev : (num + 1).toString();
+                          })} className="h-1/2 px-2 bg-secondary text-white rounded-none rounded-tr">
+                            <Icon icon="mdi:chevron-up" className="w-4 h-4" />
+                          </Button>
+                          <Button onClick={() => setWeight((prev) => {
+                            const num = parseInt(prev);
+                            return isNaN(num) ? prev : (num - 1).toString();
+                          })} className="h-1/2 px-2 bg-secondary text-white rounded-none rounded-br">
+                            <Icon icon="mdi:chevron-down" className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <Button onClick={calculateBMI} className="w-full bg-secondary hover:bg-amber-800 text-white">
                     Calculate BMI
@@ -85,22 +160,22 @@ export default function BMICalculator() {
             {bmi ? (
               <>
                 <p className="mb-2">BMI for {gender === "man" ? "Man" : "Woman"}</p>
-                <p className="mb-2">Height: {height} cm &nbsp;&nbsp; Weight: {weight} kg</p>
+                <p className="mb-2">Height: {height} &nbsp;&nbsp; Weight: {weight}</p>
                 <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
                   <div
-                    className="bg-red-500 h-2.5 rounded-full"
+                    className={`h-2.5 rounded-full ${bmi >= 18.5 && bmi < 25 ? "bg-green-500" : "bg-red-500"}`}
                     style={{ width: `${Math.min(bmi * 3, 100)}%` }}
                   ></div>
                 </div>
-                <p className="text-3xl font-bold text-red-500 mb-4">{bmi}</p>
+                <p className={`text-3xl font-bold mb-4 ${bmi >= 18.5 && bmi < 25 ? "text-green-500" : "text-red-500"}`}>{bmi}</p>
                 <p className="text-lg mb-2">
                   Your BMI {bmi}, {bmi < 18.5 ? "Underweight" : bmi < 25 ? "Ideal Weight" : bmi < 30 ? "Overweight" : "Obese"}
                 </p>
                 <p className="text-sm text-gray-600">
                   {bmi < 18.5 ? "Consider consulting a healthcare provider to discuss ways to achieve a healthier weight." :
-                   bmi >= 30 ? "It's important to consult with a healthcare provider for personalized advice on achieving a healthier weight." :
-                   bmi >= 25 ? "Consider adopting a balanced diet and regular exercise to reach a healthier weight." :
-                   "It's good. Always make sure your calorie intake matches your daily needs!"}
+                  bmi >= 30 ? "It's important to consult with a healthcare provider for personalized advice on achieving a healthier weight." :
+                  bmi >= 25 ? "Consider adopting a balanced diet and regular exercise to reach a healthier weight." :
+                  "It's good. Always make sure your calorie intake matches your daily needs!"}
                 </p>
               </>
             ) : (
