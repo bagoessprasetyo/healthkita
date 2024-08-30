@@ -104,13 +104,13 @@ export default function BMICalculator() {
                         <div className="absolute right-0 top-0 bottom-0 flex flex-col">
                           <Button onClick={() => setHeight((prev) => {
                             const num = parseInt(prev);
-                            return isNaN(num) ? prev : (num + 1).toString();
+                            return isNaN(num) ? prev : `${num + 1} cm`;
                           })} className="h-1/2 px-2 bg-secondary text-white rounded-none rounded-tr">
                             <Icon icon="mdi:chevron-up" className="w-4 h-4" />
                           </Button>
                           <Button onClick={() => setHeight((prev) => {
                             const num = parseInt(prev);
-                            return isNaN(num) ? prev : (num - 1).toString();
+                            return isNaN(num) ? prev : `${num - 1} cm`;
                           })} className="h-1/2 px-2 bg-secondary text-white rounded-none rounded-br">
                             <Icon icon="mdi:chevron-down" className="w-4 h-4" />
                           </Button>
@@ -132,13 +132,13 @@ export default function BMICalculator() {
                         <div className="absolute right-0 top-0 bottom-0 flex flex-col">
                           <Button onClick={() => setWeight((prev) => {
                             const num = parseInt(prev);
-                            return isNaN(num) ? prev : (num + 1).toString();
+                            return isNaN(num) ? prev : `${num + 1} kg`;
                           })} className="h-1/2 px-2 bg-secondary text-white rounded-none rounded-tr">
                             <Icon icon="mdi:chevron-up" className="w-4 h-4" />
                           </Button>
                           <Button onClick={() => setWeight((prev) => {
                             const num = parseInt(prev);
-                            return isNaN(num) ? prev : (num - 1).toString();
+                            return isNaN(num) ? prev : `${num - 1} kg`;
                           })} className="h-1/2 px-2 bg-secondary text-white rounded-none rounded-br">
                             <Icon icon="mdi:chevron-down" className="w-4 h-4" />
                           </Button>
@@ -156,7 +156,9 @@ export default function BMICalculator() {
         </div>
         <Card className="w-full lg:w-1/3 bg-white border-2 border-primary shadow-md">
           <CardContent className="p-6 md:p-8">
-            <h2 className="text-xl font-bold mb-4">Your Result Here!</h2>
+            <h2 className="text-xl font-bold mb-4">
+              {bmi ? "Your Result Is Here!" : "See Your Results Now!"}
+            </h2>
             {bmi ? (
               <>
                 <p className="mb-2">BMI for {gender === "man" ? "Man" : "Woman"}</p>
